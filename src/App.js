@@ -1,108 +1,40 @@
 import React from "react";
-import axios from "axios";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from "./components/Home";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
+import { BrowserRouter, Route } from "react-router-dom";
+import StreamCreate from "./components/StreamCreate";
+import StreamEdit from "./components/StreamEdit";
+import StreamDelete from "./components/StreamDelete";
+import StreamList from "./components/StreamList";
+import StreamShow from "./components/StreamShow";
+import Header from "./components/Header";
 
 class RenderRoutes extends React.Component {
   render() {
     return (
       <div>
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <Home
-              {...props}
-              loggedInStatus={this.isLoggedIn}
-              handleLogout={this.handleLogout}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/login"
-          render={(props) => (
-            <Login
-              {...props}
-              handleLogin={this.handleLogin}
-              loggedInStatus={this.isLoggedIn}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/signup"
-          render={(props) => (
-            <Signup
-              {...props}
-              handleLogin={this.handleLogin}
-              loggedInStatus={this.isLoggedIn}
-            />
-          )}
-        />
+        <div>
+          <Route path="/" exact component={StreamList} />
+          <Route path="/create" exact component={StreamCreate} />
+          <Route path="/edit" exact component={StreamEdit} />
+          <Route path="/delete" exact component={StreamDelete} />
+          <Route path="/show" exact component={StreamShow} />
+        </div>
       </div>
     );
   }
 }
 
 class App extends React.Component {
-  state = {
-    isLoggedIn: false,
-    user: {},
-  };
-
-  getUser = () => {
-    axios
-      .get("http://localhost:3000/logged_in", {
-        withCredientials: true,
-      })
-      .then((response) => {
-        if (response.data.logged_in) {
-          this.handleLogin(response);
-        } else {
-          this.handleLogout();
-        }
-      })
-      .catch((error) => console.log("api errors:", error));
-  };
-
-  handleLogin = (data) => {
-    this.state({
-      isLoggedIn: true,
-      user: data.user,
-    });
-  };
-
-  handleLogout = (data) => {
-    this.state({
-      isLoggedIn: false,
-      user: {},
-    });
-  };
-
-  componentDidMount() {
-    this.getUser();
-  }
-
-  componentWillMount() {
-    return this.props.loggedInStatus ? this.redirect() : null;
-  }
-
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div>
-          <nav>
-            <Link to="/home">Home</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">SignUp</Link>
-          </nav>
+          <Header />
+          <h1>Works</h1>
+          <RenderRoutes />
         </div>
-        <RenderRoutes />
-      </Router>
+      </BrowserRouter>
     );
   }
 }
+
 export default App;
