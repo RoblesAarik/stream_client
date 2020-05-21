@@ -15,23 +15,22 @@ class StreamCreate extends React.Component {
     });
   };
 
-  handleSubmit = (event, formInputs) => {
-    console.log("form submited");
-    event.preventDefault();
-    fetch(`${baseURL}/streams`, {
-      body: JSON.stringify(formInputs),
+  handleSubmit = (event) => {
+    console.log("form submitted");
+    fetch(baseURL + "/streams", {
       method: "POST",
       headers: {
-        Accept: "application/json, text,plain, */*",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        title: this.state.title,
+        description: this.state.description,
+      }),
     })
-      .then((createdStream) => createdStream.json())
-      .then((jsonedStream) => {
-        this.setState({
-          pets: [jsonedStream, ...this.state.streams],
-        });
-      });
+      .then((res) => {
+        console.log("res from from", res);
+      })
+      .catch((error) => console.log(error));
     this.props.history.push("/");
   };
 
@@ -45,6 +44,7 @@ class StreamCreate extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <h1>Start a new Stream</h1>
@@ -65,6 +65,7 @@ class StreamCreate extends React.Component {
             value={this.state.description}
             id={"description"}
           />
+
           <input
             type="submit"
             value={this.props.stream ? "Edit stream" : "Create New Stream"}
