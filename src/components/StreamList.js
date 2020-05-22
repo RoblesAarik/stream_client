@@ -1,11 +1,14 @@
 import React from "react";
 import "./StreamList.css";
+import Modal from "./Modal";
+import { Link } from "react-router-dom";
 
 const baseURL = process.env.REACT_APP_BACKEND;
 
 class StreamList extends React.Component {
   state = {
     streams: [],
+    formVisible: false,
   };
 
   componentDidMount() {
@@ -70,19 +73,33 @@ class StreamList extends React.Component {
       .catch((error) => console.log(error));
   };
 
+  toggleForm = () => {
+    this.setState({
+      formVisible: !this.state.formVisible,
+    });
+  };
+
   render() {
     console.log(this.state);
+
     return (
       <div>
         <h1>Streams</h1>
+        {this.state.formVisible ? (
+          <div className="modal">
+            <Modal handleSubmit={this.handleUpdate} />
+            <button onClick={this.toggleForm}>Close</button>
+          </div>
+        ) : null}
         {this.state.streams.map((stream) => (
           <div key={stream.id} className="list">
             <div className="items">
-              <h3>{stream.title}</h3>
+              <Link to={`/show/${stream.id}`}>{stream.title}</Link>
               <p>{stream.description}</p>
               <button onClick={() => this.handleDelete(stream)}>
                 Delete Stream
               </button>
+              <button onClick={this.toggleForm}>Edit</button>
             </div>
           </div>
         ))}

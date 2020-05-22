@@ -1,9 +1,9 @@
 import React from "react";
 import Input from "./Input.js";
 
-const baseURL = process.env.REACT_APP_BACKEND;
+// const baseURL = process.env.REACT_APP_BACKEND;
 
-class StreamCreate extends React.Component {
+class Modal extends React.Component {
   state = {
     title: "",
     description: "",
@@ -15,23 +15,8 @@ class StreamCreate extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
-    console.log("form submitted");
-    fetch(baseURL + "/streams", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: this.state.title,
-        description: this.state.description,
-      }),
-    })
-      .then((res) => {
-        console.log("res from from", res);
-      })
-      .catch((error) => console.log(error));
-    this.props.history.push("/");
+  handleUpdate = (event, stream) => {
+    this.props.handleUpdate(event, stream);
   };
 
   componentWillMount() {
@@ -47,8 +32,8 @@ class StreamCreate extends React.Component {
     console.log(this.state);
     return (
       <div>
-        <h1>Start a new Stream</h1>
-        <form onSubmit={this.handleSubmit}>
+        <h1>Edit Stream</h1>
+        <form onSubmit={this.handleUpdate}>
           <Input
             handleChange={this.handleChange}
             name={"title"}
@@ -66,14 +51,11 @@ class StreamCreate extends React.Component {
             id={"description"}
           />
 
-          <input
-            type="submit"
-            value={this.props.stream ? "Edit stream" : "Create New Stream"}
-          />
+          <input type="submit" value={"Edit stream"} />
         </form>
       </div>
     );
   }
 }
 
-export default StreamCreate;
+export default Modal;
