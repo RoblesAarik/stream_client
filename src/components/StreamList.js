@@ -2,6 +2,7 @@ import React from "react";
 import "./StreamList.css";
 import Modal from "./Modal";
 import { Link } from "react-router-dom";
+// import Stream from "./Stream";
 
 const baseURL = process.env.REACT_APP_BACKEND;
 
@@ -9,6 +10,12 @@ class StreamList extends React.Component {
   state = {
     streams: [],
     formVisible: false,
+    stream: "",
+  };
+
+  getStream = (stream) => {
+    this.setState({ stream: stream });
+    console.log(stream);
   };
 
   componentDidMount() {
@@ -94,7 +101,14 @@ class StreamList extends React.Component {
         {this.state.streams.map((stream) => (
           <div key={stream.id} className="list">
             <div className="items">
-              <Link to={`/show/${stream.id}`}>{stream.title}</Link>
+              <Link
+                to={{
+                  pathname: `/show/${stream.id}`,
+                  state: { stream: stream },
+                }}
+              >
+                {stream.title}
+              </Link>
               <p>{stream.description}</p>
               <button onClick={() => this.handleDelete(stream)}>
                 Delete Stream

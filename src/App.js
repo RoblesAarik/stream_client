@@ -17,7 +17,12 @@ class RenderRoutes extends React.Component {
             <Route path="/create" exact component={Form} />
             <Route path="/create" exact component={Modal} />
             <Route path="/delete" exact component={StreamDelete} />
-            <Route path="/show/:id" exact component={StreamShow} />
+            <Route
+              path="/show/:id"
+              render={(routeProps) => (
+                <StreamShow {...routeProps} stream={this.props.stream} />
+              )}
+            />
           </Switch>
         </div>
       </div>
