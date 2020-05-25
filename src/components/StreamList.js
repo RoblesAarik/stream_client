@@ -10,17 +10,25 @@ class StreamList extends React.Component {
   state = {
     streams: [],
     formVisible: false,
-    stream: "",
+    stream: {},
   };
 
   getStream = (stream) => {
     this.setState({ stream: stream });
-    console.log(stream);
+    console.log(this.state.stream);
   };
 
   componentDidMount() {
     this.getStreams();
   }
+
+  toggleForm = (stream) => {
+    this.getStream(stream);
+    this.setState({
+      formVisible: !this.state.formVisible,
+    });
+    console.log(stream);
+  };
 
   getStreams() {
     fetch(`${baseURL}/streams`)
@@ -47,22 +55,6 @@ class StreamList extends React.Component {
       });
   };
 
-  handleUpdate = (event, formInputs) => {
-    event.preventDefault();
-    fetch(`${baseURL}/streams/${formInputs.id}`, {
-      body: JSON.stringify(formInputs),
-      method: "PUT",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((updatedStream) => {
-        this.getStreams();
-      })
-      .catch((error) => console.log(error));
-  };
-
   handleDelete = (deleteStream) => {
     fetch(`${baseURL}/streams/${deleteStream.id}`, {
       method: "DELETE",
@@ -80,10 +72,20 @@ class StreamList extends React.Component {
       .catch((error) => console.log(error));
   };
 
-  toggleForm = () => {
-    this.setState({
-      formVisible: !this.state.formVisible,
-    });
+  handleUpdate = (event, formInputs) => {
+    event.preventDefault();
+    fetch(`${baseURL}/streams/${formInputs.id}`, {
+      body: JSON.stringify(formInputs),
+      method: "PUT",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((updatedStream) => {
+        this.getstream();
+      })
+      .catch((error) => console.log(error));
   };
 
   render() {
@@ -94,7 +96,10 @@ class StreamList extends React.Component {
         <h1>Streams</h1>
         {this.state.formVisible ? (
           <div className="modal">
-            <Modal handleSubmit={this.handleUpdate} />
+            <Modal
+              stream={this.state.stream}
+              handleSubmit={this.handleUpdate}
+            />
             <button onClick={this.toggleForm}>Close</button>
           </div>
         ) : null}
@@ -110,10 +115,18 @@ class StreamList extends React.Component {
                 {stream.title}
               </Link>
               <p>{stream.description}</p>
+
+              <Link
+                to={{
+                  pathname: `edit/${stream.id}`,
+                  state: { stream: stream },
+                }}
+              >
+                <button>Edit</button>
+              </Link>
               <button onClick={() => this.handleDelete(stream)}>
                 Delete Stream
               </button>
-              <button onClick={this.toggleForm}>Edit</button>
             </div>
           </div>
         ))}

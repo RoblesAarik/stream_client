@@ -29,7 +29,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div>
         <h1>Edit Stream</h1>

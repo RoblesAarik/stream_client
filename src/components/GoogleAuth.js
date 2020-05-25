@@ -1,13 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import "./GoogleAuth.css";
 import { connect } from "react-redux";
-import { signIn, signOut } from "../actions/index";
+import { signIn, signOut } from "../actions";
 
-class GoogleAuth extends React.Component {
-  state = {
-    isSignedIn: null,
-  };
-
+class GoogleAuth extends Component {
   componentDidMount() {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
