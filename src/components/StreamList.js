@@ -15,10 +15,6 @@ class StreamList extends React.Component {
     this.setState({ stream: stream });
   };
 
-  componentDidMount() {
-    this.getStreams();
-  }
-
   getStreams() {
     fetch(`${baseURL}/streams`)
       .then((response) => response.json())
@@ -78,6 +74,9 @@ class StreamList extends React.Component {
         ))}
       </div>
     );
+  }
+  componentDidMount() {
+    this.getStreams();
   }
 }
 
