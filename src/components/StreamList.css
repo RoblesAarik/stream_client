@@ -7,17 +7,23 @@ h1 {
 }
 
 .items {
-  border: 1px solid gray;
-  width: 75%;
+  border: 1px solid black;
+  width: 55%;
   border-radius: 10px;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 35px;
   padding-top: 15px;
+  background-color: gray;
+  color: white;
+  box-shadow: black 7px 8px 14px;
 }
 
 button {
   margin-left: 10px;
+  color: white;
+  background-color: #96d309;
+  border-radius: 5px;
 }
 
 .stream_title {

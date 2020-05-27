@@ -15,5 +15,6 @@ App connects to any OBS for streaming capabilites
 # Future improvements
 
 - Working Authentication
-- connecting streams to users
+- Connecting streams to users
 - Chat Box
+- Stream preview
