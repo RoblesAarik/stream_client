@@ -40,6 +40,7 @@ class StreamList extends React.Component {
   };
 
   render() {
+    console.log(`${baseURL}/streams`);
     console.log(this.state.streams);
     return (
       <div>
