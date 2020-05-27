@@ -1,6 +1,7 @@
 # Reverb
 
 Streaming App for creative arts
+App connects to any OBS for streaming capabilites
 
 # Heroku Link
 
