@@ -16,7 +16,7 @@ class StreamList extends React.Component {
   };
 
   getStreams() {
-    fetch(`${baseURL}/streams`)
+    fetch(`https://reverb-api.herokuapp.com/streams`)
       .then((response) => response.json())
       .then((json) => this.setState({ streams: json }))
       .catch((error) => console.log(error));
