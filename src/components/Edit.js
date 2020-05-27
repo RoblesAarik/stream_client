@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "./Input";
+import "./Form.css";
 
 const baseURL = process.env.REACT_APP_BACKEND;
 
@@ -45,35 +46,37 @@ class Edit extends React.Component {
     this.props.history.push("/");
   };
   render() {
-    console.log(baseURL + "/streams/" + this.state.stream.id);
-    console.log(this.state);
-    console.log(this.props.location.state.stream);
     return (
       <div>
         <h1>Edit</h1>
-        <h2>{this.state.stream.title}</h2>
-        <form>
-          <Input
-            handleChange={this.handleChange}
-            name={"title"}
-            placeholder={"Stream Title"}
-            type={"text"}
-            value={this.state.title}
-            id={"title"}
-          />
-          <Input
-            handleChange={this.handleChange}
-            name={"description"}
-            placeholder={"Stream Description"}
-            type={"text"}
-            value={this.state.description}
-            id={"description"}
-          />
-
-          <button type="button" onClick={this.handleSubmit}>
-            Edit Stream
-          </button>
-        </form>
+        <div className="newForm">
+          <form>
+            <h3>New Title</h3>
+            <Input
+              className="input"
+              handleChange={this.handleChange}
+              name={"title"}
+              placeholder={"Stream Title"}
+              type={"text"}
+              value={this.state.title}
+              id={"title"}
+            />
+            <h3>New Description</h3>
+            <Input
+              className="input"
+              handleChange={this.handleChange}
+              name={"description"}
+              placeholder={"Stream Description"}
+              type={"text"}
+              value={this.state.description}
+              id={"description"}
+            />
+            <br />
+            <button type="button" onClick={this.handleSubmit}>
+              Edit Stream
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

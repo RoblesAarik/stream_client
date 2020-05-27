@@ -8,10 +8,15 @@ class Header extends React.Component {
     return (
       <div className="headerWrapper">
         <div className="headerTitle">
-          <Link to="/">Streamer</Link>
+          <Link to="/">Reverb</Link>
         </div>
         <div className="otherLinks">
-          <Link to="/">All Streams</Link>
+          <Link className="link" to="/">
+            All Streams
+          </Link>
+          <Link className="link" to="/create">
+            Start a Stream
+          </Link>
           <GoogleAuth />
         </div>
       </div>

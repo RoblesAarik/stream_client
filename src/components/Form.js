@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "./Input.js";
+import "./Form.css";
 
 const baseURL = process.env.REACT_APP_BACKEND;
 
@@ -44,30 +45,39 @@ class Form extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <h1>Start a new Stream</h1>
-        <form onSubmit={this.handleAdd}>
-          <Input
-            handleChange={this.handleChange}
-            name={"title"}
-            placeholder={"Stream Title"}
-            type={"text"}
-            value={this.state.title}
-            id={"title"}
-          />
-          <Input
-            handleChange={this.handleChange}
-            name={"description"}
-            placeholder={"Stream Description"}
-            type={"text"}
-            value={this.state.description}
-            id={"description"}
-          />
-
-          <input type="submit" value={"Create New Stream"} />
-        </form>
+        <div className="newForm">
+          <form onSubmit={this.handleAdd}>
+            <h3>Enter Title</h3>
+            <Input
+              className="input"
+              handleChange={this.handleChange}
+              name={"title"}
+              placeholder={"Stream Title"}
+              type={"text"}
+              value={this.state.title}
+              id={"title"}
+            />
+            <h3>Enter Description</h3>
+            <Input
+              className="input"
+              handleChange={this.handleChange}
+              name={"description"}
+              placeholder={"Stream Description"}
+              type={"text"}
+              value={this.state.description}
+              id={"description"}
+            />
+            <br />
+            <input
+              classNae="button"
+              type="submit"
+              value={"Create New Stream"}
+            />
+          </form>
+        </div>
       </div>
     );
   }

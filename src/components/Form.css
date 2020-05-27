@@ -1,0 +1,14 @@
+.newForm {
+  display: grid;
+  grid-gap: 10px;
+  background: #f9f9f9;
+  border: 1px solid #c1c1c1;
+  margin: 2rem auto 0 auto;
+  width: 550px;
+  height: 250px;
+  padding-left: 35px;
+}
+Input {
+  background: #fff;
+  border: 1px solid #9c9c9c;
+}

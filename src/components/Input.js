@@ -6,6 +6,7 @@ const Input = (props) => {
     <>
       <label htmlFor={name}>{title}</label>
       <input
+        style={{ width: "60%", marginBottom: "15px" }}
         id={name}
         name={name}
         type={type}
