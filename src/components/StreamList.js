@@ -52,6 +52,7 @@ class StreamList extends React.Component {
   };
 
   render() {
+    console.log(this.state.streams);
     return (
       <div>
         <h1>Current Streams</h1>
