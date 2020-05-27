@@ -8,7 +8,6 @@ const baseURL = process.env.REACT_APP_BACKEND;
 class StreamList extends React.Component {
   state = {
     streams: [],
-    formVisible: false,
     stream: {},
   };
 
@@ -19,13 +18,6 @@ class StreamList extends React.Component {
   componentDidMount() {
     this.getStreams();
   }
-
-  toggleForm = (stream) => {
-    this.getStream(stream);
-    this.setState({
-      formVisible: !this.state.formVisible,
-    });
-  };
 
   getStreams() {
     fetch(`${baseURL}/streams`)
