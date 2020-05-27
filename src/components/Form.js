@@ -18,7 +18,7 @@ class Form extends React.Component {
 
   handleAdd = (event) => {
     console.log("form submitted");
-    fetch(baseURL + "/streams", {
+    fetch(`${baseURL}/streams`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
