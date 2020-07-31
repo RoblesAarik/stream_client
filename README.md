@@ -5,11 +5,12 @@ App connects to any OBS for streaming capabilites
 
 
 # How to use
-To stream on the App you must download OBS at https://obsproject.com/
-Once OBS is downloaded create your scene 
-In the app create a new stream and copy the link into custom service link. 
-Use the id at the end of the URL as the stream key.
-Start Streaming
+
+- To stream on the App you must download OBS at https://obsproject.com/
+- Once OBS is downloaded create your scene 
+- In the app create a new stream and copy the link into custom service link. 
+- Use the id at the end of the URL as the stream key.
+- Start Streaming
 
 
 # Heroku Link
