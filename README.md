@@ -1,3 +1,7 @@
+# Heroku Link
+
+## https://reverb-client.herokuapp.com/
+
 # Reverb
 
 Streaming App for creative arts
@@ -12,10 +16,6 @@ App connects to any OBS for streaming capabilites
 - Use the id at the end of the URL as the stream key.
 - Start Streaming
 
-
-# Heroku Link
-
-## https://reverb-client.herokuapp.com/
 
 ## Technology used
 
